@@ -1415,4 +1415,47 @@ export interface CustomPaymentMethod {
      */
     subtitle?: string;
   };
+
+  /**
+   * Additional options to configure the Custom Payment Method in the Payment Element. Alias for `options`.
+   */
+  payment?: {
+    /**
+     * The payment form type.
+     */
+    type: 'static';
+
+    /**
+     * Display additional information about the payment method, max 100 characters.
+     */
+    subtitle?: string;
+  };
+
+  /**
+   * Requires beta access:
+   * Contact [Stripe support](https://support.stripe.com/) for more information.
+   *
+   * Additional options to configure the Custom Payment Method in the Express Checkout Element.
+   */
+  expressCheckout?: {
+    /**
+     * The payment button type.
+     */
+    type: 'embedded';
+
+    /**
+     * Options for the embedded Custom Payment Method.
+     */
+    embedded: {
+      /**
+       * Function for rendering custom content in the Custom Payment Method button, called on mount.
+       */
+      handleRender: (container: HTMLDivElement) => void;
+
+      /**
+       * Function for cleaning up the Custom Payment Method button, called when the Custom Payment Method is removed and on unmount.
+       */
+      handleDestroy?: () => void;
+    };
+  };
 }

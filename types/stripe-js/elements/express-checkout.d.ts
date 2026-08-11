@@ -607,6 +607,9 @@ export interface StripeExpressCheckoutElementAvailablePaymentMethodsChangeEvent 
         paypal?: {available: boolean};
         amazonPay?: {available: boolean};
         klarna?: {available: boolean};
+        [customPaymentMethodId: `cpmt_${string}`]:
+          | {available: boolean}
+          | undefined;
       }
     | undefined;
 }
