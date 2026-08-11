@@ -1404,16 +1404,34 @@ export interface CustomPaymentMethod {
   /**
    * Additional options to configure the Custom Payment Method.
    */
-  options: {
+  options?: {
     /**
      * The payment form type.
      */
-    type: 'static';
+    type: 'static' | 'embedded';
 
     /**
      * Display additional information about the payment method, max 100 characters.
      */
     subtitle?: string;
+
+    /**
+     * Requires beta access:
+     * Contact [Stripe support](https://support.stripe.com/) for more information.
+     *
+     * Options for the embedded Custom Payment Method. Required for type: 'embedded'.
+     */
+    embedded?: {
+      /**
+       * Function for rendering custom content in the Custom Payment Method form, called on mount.
+       */
+      handleRender: (container: HTMLDivElement) => void;
+
+      /**
+       * Function for cleaning up the Custom Payment Method form, called when the Custom Payment Method is removed and on unmount.
+       */
+      handleDestroy?: () => void;
+    };
   };
 
   /**
@@ -1431,9 +1449,12 @@ export interface CustomPaymentMethod {
     subtitle?: string;
 
     /**
-     * Options for the embedded Custom Payment Method.
+     * Requires beta access:
+     * Contact [Stripe support](https://support.stripe.com/) for more information.
+     *
+     * Options for the embedded Custom Payment Method. Required for type: 'embedded'.
      */
-    embedded: {
+    embedded?: {
       /**
        * Function for rendering custom content in the Custom Payment Method form, called on mount.
        */
